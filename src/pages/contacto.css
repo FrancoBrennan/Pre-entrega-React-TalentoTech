@@ -1,0 +1,7 @@
+.form-contact { width: 90vw; max-width:500px; background:#24303c; padding: 24px; margin: 5vh auto; border-radius: 1.5rem; color:#fff; box-shadow: 1px 3px 20px #000; }
+.form-contact h4 { text-align:center; font-size: 2rem; margin-bottom: 16px; }
+.controls { width:100%; background:#24303c; color:#fff; border:1px solid #1f53c5; border-radius:8px; padding: 10px; margin-bottom: 12px; }
+.boton { width:100%; background:#1f53c5; border:none; padding:12px; color:#fff; font-size:1.1rem; border-radius:8px; }
+.contact-container { display:grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.contact-item { display:flex; flex-direction:column; padding: 10px; border-left:3px solid #7ed321; background:#f9f9f9; border-bottom: #BABAC4 solid .5px; }
+.error-message.visible { color: red; }

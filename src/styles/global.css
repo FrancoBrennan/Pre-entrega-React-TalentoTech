@@ -1,0 +1,227 @@
+/* ========== Global.css (compartido por toda la app) ========== */
+
+/* Reset mínimo + base */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #111;
+}
+
+/* Links por defecto */
+a { color: inherit; text-decoration: none; }
+
+/* ---------------- Header / Navbar (mobile first) ---------------- */
+header {
+  background-color: #201f1f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  height: 3vh; /* se ajusta en breakpoints */
+}
+
+.logo {
+  max-width: 25vw;
+  transition: transform 0.3s;
+}
+.logo:hover { transform: scale(1.1); }
+
+/* Icono carrito y contador */
+.carrito-compras {
+  position: relative;
+  font-size: 1.6rem;
+  color: #fff;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+.carrito-compras .contador {
+  display: none;              /* se muestra por JS cuando > 0 */
+  position: absolute;
+  top: 2px; right: -10px;
+  background-color: #4d4c4c;
+  padding: 1px 3px;
+  font-size: 10px;
+  color: #fff;
+  border-radius: 50%;
+  min-width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold;
+}
+
+/* Menú lateral (mobile) */
+.nav {
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 1rem;
+
+  position: fixed; inset: 0 0 0 auto;  /* top/right/bottom; left auto */
+  right: -100%;
+  background-color: #1c1c1c;
+  padding: 2rem;
+  box-shadow: 0 0 0 100vmax rgba(0,0,0,.5);
+  z-index: 100;
+  transition: right .3s ease, opacity .3s ease, visibility .3s ease;
+}
+.nav.visible {
+  right: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-list li a {
+  color: #ececec;
+  transition: color .3s ease;
+}
+.nav-list li a:hover { color: #00bfff; }
+
+.abrir-menu,
+.cerrar-menu {
+  display: block;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.abrir-menu { color: #f8f3f3; font-size: 2rem; }
+.cerrar-menu { color: #ececec; font-size: 1.5rem; margin-top: 4.2vh; }
+
+/* Overlay para cerrar el drawer */
+.overlay {
+  position: fixed; inset: 0;
+  background-color: rgba(0,0,0,.5);
+  visibility: hidden; opacity: 0;
+  z-index: 99;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.overlay.visible { visibility: visible; opacity: 1; }
+
+/* ---------------- Footer (global) ---------------- */
+footer {
+  background-color: #201f1f;
+  color: #fff;
+  padding-top: 2vh;
+  width: 100%;
+}
+footer p { margin-bottom: 0; }
+
+.footer-info { border-bottom: .5px solid #fff; }
+.footer-info h5 { margin-top: 1vh; text-align: center; }
+.footer-info a { color: #fff; }
+
+.footer-info ul { padding-left: 0 !important; }
+
+.lista-footer {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  font-size: .9rem;
+  margin: 0;
+  padding: 0;
+}
+
+.redes-sociales {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 10vw;
+  margin: 0 0 2vh 0;
+  padding: 0;
+}
+.redes-sociales i { font-size: 5vh; }
+
+.copyright p {
+  text-align: center;
+  padding: 2vh 2vh;
+}
+
+/* ---------------- Breakpoints (compartidos) ---------------- */
+@media screen and (min-width: 375px) {
+  .logo { max-width: 20vw; }
+}
+@media screen and (min-width: 424px) {
+  .logo { max-width: 18vw; }
+}
+@media screen and (min-width: 768px) {
+  header { height: 10vh; }
+  .logo { max-width: 12vw; }
+
+  .abrir-menu { margin-right: 2vh; }
+  .carrito-compras { margin-right: 4vh; }
+
+  .nav.visible { width: 35vw; }
+  .nav-list { font-size: 1.5rem; }
+
+  .carrito-compras .contador {
+    top: 8px; right: -10px;
+    padding: 7px; font-size: 14px; height: 22px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* En desktop, el menú deja de ser drawer y pasa a barra */
+  header {
+    height: 10vh;
+    font-family: "Poppins", sans-serif;
+    position: sticky; top: 0; left: 0;
+    z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 20px;
+  }
+
+  .logo { width: 10vw; }
+
+  .carrito-compras {
+    display: flex; align-items: center; padding-bottom: .4rem;
+    transition: color .4s ease;
+    margin-right: 0;
+  }
+  .carrito-compras:hover { color: #00bfff; }
+
+  .abrir-menu, .cerrar-menu { display: none; }
+  .nav {
+    opacity: 1; visibility: visible; position: static;
+    flex-direction: row; align-items: center;
+    box-shadow: none; background: transparent; padding: 0; right: 0;
+  }
+  .nav-list { flex-direction: row; gap: 1rem; }
+  .nav-list li a { color: #fff; font-size: 1.5rem; }
+
+  .bi { font-size: 2rem; }
+
+  .carrito-compras .contador {
+    top: 2px; right: -7px; padding: 7px; font-size: 12px; height: 18px; width: 18px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .logo { width: 9vw; }
+  .carrito-compras { margin-right: 1vh; }
+}
+
+@media screen and (min-width: 1280px) {
+  .logo { width: 7vw; margin-left: 1vw; }
+}
+
+@media screen and (min-width: 1440px) {
+  .logo { width: 6vw; }
+}
+
+/* --------------- Utilidades pequeñas (opcionales) --------------- */
+.container-max { width: 100%; max-width: 1024px; margin: 0 auto; }
+.hidden { display: none !important; }
